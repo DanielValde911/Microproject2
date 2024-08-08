@@ -1,2 +1,2 @@
 # Microproject2
-For JS Framework
+Game station website using Vue.JS

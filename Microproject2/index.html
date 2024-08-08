@@ -3,85 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PS5 showcase</title>
+    <title>Game Station</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- THIS IS THE TOP MENU -->
-    <header id="playstation">
-      <nav class="top-menu">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
-      </nav>
-    </header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Game Station</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link active" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="about.html">About Us</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
     <!--MAIN CONTENT-->
     <div class="container" id="app">
       <div class="cart-box">Cart({{ cart }})</div>
       <div class="view">
-        <h1>{{ title }}</h1>
+        <h4>{{ title }}</h4>
         <img :src="selectedImage()" alt="Ps5 Image" class="image" />
         <!--Drop down to select color-->
         <div class="dropdown" id="dropdown">
-          <select id="menu-select" v-model="selectedColor">
+          <select class="form-control" id="menu-select" v-model="selectedColor">
             <option value="white">White</option>
             <option value="blue">Blue</option>
             <option value="yellow">Yellow</option>
           </select>
         </div>
-        <h2 v-if="inStock()" class="in-stock" id="positive">In Stock</h2>
-        <h2 v-else="inStock()" class="in-stock" id="negative">Out of Stock</h2>
+        
+        <p v-if="inStock()" class="in-stock" id="positive">In Stock</p>
+        <p v-else="inStock()" class="in-stock" id="negative">Out of Stock</p>
         <button
-          class="buy"
+        type="button"class="btn btn-custom"
+         
           @click="addToCart"
           :id="!inStock() ? 'disabled' : 'enabled'"
         >
-          BUY NOW!
+          ADD TO CART
         </button>
       </div>
       <!--Description-->
-      <div class="text-content">
-        <br />
-        <h3>CPU:</h3>
-        <ul>
-          <li v-for="detail in details.cpu">{{detail}}</li>
-        </ul>
-        <hr />
-        <h3>GPU:</h3>
-        <ul>
-          <li v-for="detail in details.gpu">{{detail}}</li>
-        </ul>
-        <hr />
-        <h3>RAM:</h3>
-        <ul>
-          <li v-for="detail in details.ram">{{detail}}</li>
-        </ul>
-        <hr />
-        <h3>STORAGE:</h3>
-        <ul>
-          <li v-for="detail in details.storage">{{detail}}</li>
-        </ul>
-        <hr />
-        <h3>VIDEO:</h3>
-        <ul>
-          <li v-for="detail in details.video">{{detail}}</li>
-        </ul>
-        <hr />
-        <h3>AUDIO:</h3>
-        <ul>
-          <li v-for="detail in details.audio">{{detail}}</li>
-        </ul>
-      </div>
+
+        <div class="text-content">
+          <br />
+          <h6>CPU:</h6>
+          <ul>
+            <li v-for="detail in details.cpu">{{detail}}</li>
+          </ul>
+          <hr />
+          <h6>GPU:</h6>
+          <ul>
+            <li v-for="detail in details.gpu">{{detail}}</li>
+          </ul>
+          <hr />
+          <h6>RAM:</h6>
+          <ul>
+            <li v-for="detail in details.ram">{{detail}}</li>
+          </ul>
+          <hr />
+          <h6>STORAGE:</h6>
+          <ul>
+            <li v-for="detail in details.storage">{{detail}}</li>
+          </ul>
+          <hr />
+          <h6>VIDEO:</h6>
+          <ul>
+            <li v-for="detail in details.video">{{detail}}</li>
+          </ul>
+          <hr />
+          <h6>AUDIO:</h6>
+          <ul>
+            <li v-for="detail in details.audio">{{detail}}</li>
+          </ul>
+        </div>
+      
+
     </div>
     <!--This imports vue-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!--Import script.js-->
     <script src="scripts/script.js"></script>
+    <!-- Import Bootstrap5 -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
     <!--Mount app-->
     <script>
       const mountedApp = app.mount("#app");
     </script>
+    <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3 mt-4">
+    <p>&copy; 2024 Game Station. Developed by Daniel & Jing</p>
+  </footer>
 
   </body>
 </html>
