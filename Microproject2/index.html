@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PS5 showcase</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- THIS IS THE TOP MENU -->
+    <header id="playstation">
+      <nav class="top-menu">
+        <ul>
+          <li><a href="" class="active">Shopping</a></li>
+          <li><a href="">Checkout</a></li>
+          <li><a href="">Shipping</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!--MAIN CONTENT-->
+    <div class="container" id="app">
+      <div class="cart-box">Cart({{ cart }})</div>
+      <div class="view">
+        <h1>{{ title }}</h1>
+        <img :src="selectedImage()" alt="Ps5 Image" class="image" />
+        <!--Drop down to select color-->
+        <div class="dropdown" id="dropdown">
+          <select id="menu-select" v-model="selectedColor">
+            <option value="white">White</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+          </select>
+        </div>
+        <h2 v-if="inStock()" class="in-stock" id="positive">In Stock</h2>
+        <h2 v-else="inStock()" class="in-stock" id="negative">Out of Stock</h2>
+        <button
+          class="buy"
+          @click="addToCart"
+          :id="!inStock() ? 'disabled' : 'enabled'"
+        >
+          BUY NOW!
+        </button>
+      </div>
+      <!--Description-->
+      <div class="text-content">
+        <br />
+        <h3>CPU:</h3>
+        <ul>
+          <li v-for="detail in details.cpu">{{detail}}</li>
+        </ul>
+        <hr />
+        <h3>GPU:</h3>
+        <ul>
+          <li v-for="detail in details.gpu">{{detail}}</li>
+        </ul>
+        <hr />
+        <h3>RAM:</h3>
+        <ul>
+          <li v-for="detail in details.ram">{{detail}}</li>
+        </ul>
+        <hr />
+        <h3>STORAGE:</h3>
+        <ul>
+          <li v-for="detail in details.storage">{{detail}}</li>
+        </ul>
+        <hr />
+        <h3>VIDEO:</h3>
+        <ul>
+          <li v-for="detail in details.video">{{detail}}</li>
+        </ul>
+        <hr />
+        <h3>AUDIO:</h3>
+        <ul>
+          <li v-for="detail in details.audio">{{detail}}</li>
+        </ul>
+      </div>
+    </div>
+    <!--This imports vue-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!--Import script.js-->
+    <script src="scripts/script.js"></script>
+    <!--Mount app-->
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>
